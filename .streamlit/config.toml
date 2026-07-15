@@ -1,0 +1,12 @@
+[global]
+# Allow unsafe HTML in st.markdown calls
+unsafeAllowHtml = true
+
+[server]
+headless = true
+address = "0.0.0.0"
+enableCORS = false
+enableXsrfProtection = false
+
+[browser]
+gatherUsageStats = false

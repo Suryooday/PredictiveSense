@@ -12,5 +12,5 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Streamlit run files
-.streamlit/
+# Streamlit secrets (never commit API keys)
+.streamlit/secrets.toml
