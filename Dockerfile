@@ -21,11 +21,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy all application files to the container
 COPY . .
 
-# Expose port 8501 (default Streamlit port)
+# Expose port (Render assigns $PORT dynamically)
 EXPOSE 8501
 
 # Healthcheck to verify container health
-HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+HEALTHCHECK CMD curl --fail http://localhost:${PORT:-8501}/_stcore/health
 
 # Run Streamlit when the container launches
-ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+# Use shell form so $PORT env variable is expanded by Render
+CMD streamlit run app.py --server.port=${PORT:-8501} --server.address=0.0.0.0
